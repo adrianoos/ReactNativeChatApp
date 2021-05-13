@@ -7,10 +7,10 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
-      fontSize: '50vw'
     },
     text: {
-      fontSize: '50px'
+      fontSize: '50px',
+      fontFamily: 'Poppins-Light'
     }
   });
 

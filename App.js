@@ -6,7 +6,7 @@ import styles from './styles/styles'
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Open up App.js to start working on your app!</Text>
+      <Text style={styles.text}>Hello React Native App</Text>
       <StatusBar style="auto" />
     </View>
   );
