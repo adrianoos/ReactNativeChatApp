@@ -1,16 +1,24 @@
-import { StyleSheet } from 'react-native';
+
+import { StyleSheet, StatusBar } from 'react-native';
 
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+      paddingTop: StatusBar.currentHeight,
+      marginHorizontal: 16
     },
-    text: {
-      fontSize: '50px',
-      fontFamily: 'Poppins-Light'
+    item: {
+      backgroundColor: "#f9c2ff",
+      padding: 20,
+      marginVertical: 8
+    },
+    header: {
+      fontSize: 32,
+      backgroundColor: "#fff"
+    },
+    title: {
+      fontSize: 24
     }
   });
 

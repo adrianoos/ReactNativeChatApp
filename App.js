@@ -1,15 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Text, View } from 'react-native';
-import styles from './styles/styles'
+import RoomList from './Components/RoomList';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Hello React Native App</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const DATA = [
+  {
+    title: "Rooms",
+    data: ["Room1", "Room2", "Room3"]
+  }
+];
 
+const App = () => (
+  <RoomList data={DATA}/>
+);
 
+export default App;
