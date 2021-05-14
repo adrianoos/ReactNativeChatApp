@@ -1,6 +1,11 @@
 import React from 'react';
 import { Text, SafeAreaView, FlatList, View } from 'react-native';
 import styles from '../styles/styles';
+import SearchIcon from './SearchIcon';
+import RoomsIcon from './RoomsIcon';
+
+
+
 
 
 const RoomList = ({ data }) => {
@@ -10,13 +15,19 @@ const RoomList = ({ data }) => {
   );
 
   const Item = ({ title }) => (
-    <View style={styles.item}>
+    <View style={styles.listItem}>
       <Text style={styles.title}>{title}</Text>
     </View>
   )
 
   return (
+
     <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headetText}>ROOMS</Text>
+        <SearchIcon />
+        <RoomsIcon />
+      </View>
       <FlatList
         data={data}
         renderItem={renderItem}
