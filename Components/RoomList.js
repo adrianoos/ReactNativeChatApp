@@ -8,15 +8,18 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
-const RoomList = ({ navigation, data }) => {
+const RoomList = ({ navigation, data, roomID, setID }) => {
 
-
+const switchView = (id) =>{
+  navigation.navigate('ChatPanel')
+  setID(id)
+}
 
   const renderItem = ({ item }) => (
-    <Item title={item.name} />);
+    <Item title={item.name} id={item.id}/>);
 
-  const Item = ({ title }) => (
-    <TouchableWithoutFeedback style={styles.touchableElem} onPressIn={() => navigation.navigate('ChatPanel')}>
+  const Item = ({ title, id }) => (
+    <TouchableWithoutFeedback style={styles.touchableElem} onPressIn={() => switchView(id)}>
     <View style={styles.listItem}>
       <Text style={styles.title}>{title}</Text>
     </View>

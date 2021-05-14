@@ -9,7 +9,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 const App = () => {
 
-  const [fetchedRooms, setFetchedRooms] = useState([])
+const Stack = createStackNavigator();
+
+const [fetchedRooms, setFetchedRooms] = useState([])
+const [roomID, setroomID] = useState('')
 
 const getData = async () => {
   let data = await Rooms()
@@ -20,7 +23,7 @@ useEffect(()=> {
 getData()
 }, [])
 
-const Stack = createStackNavigator();
+
 
 console.log(fetchedRooms)
 
@@ -30,10 +33,10 @@ return (
         headerShown: false}}
         initialRouteName="RoomList">
       <Stack.Screen name="RoomList">
-       {props => <RoomList {...props} data={fetchedRooms} />}
+       {props => <RoomList {...props} data={fetchedRooms} roomID={roomID} setID={setroomID} />}
       </Stack.Screen>
       <Stack.Screen name="ChatPanel">
-       {props => <ChatPanel {...props} data={[]} />}
+       {props => <ChatPanel {...props} roomID={roomID} />}
       </Stack.Screen>
     </Stack.Navigator>
   </NavigationContainer>

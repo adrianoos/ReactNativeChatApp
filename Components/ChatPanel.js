@@ -3,7 +3,12 @@ import { Text, View, Button } from 'react-native';
 import styles from '../styles/styles';
 
 
-const ChatPanel = ({ navigation, title }) => (
+const ChatPanel = ({ navigation, roomID }) => {
+
+  console.log(roomID)
+
+  return (
+
     <View>
       <Text>HI I AM CHAT PANEL</Text>
       <Button
@@ -11,6 +16,6 @@ const ChatPanel = ({ navigation, title }) => (
         onPress={() => navigation.navigate('RoomList')}
       />
     </View>
-  );
+  )};
 
   export default ChatPanel;
