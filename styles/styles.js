@@ -35,9 +35,41 @@ const styles = StyleSheet.create({
       flex: 3,
       fontWeight: '500'
     },
+    ChatPanelHeaderUp: {
+      fontSize: '20px',
+      color: 'rgb(0, 82, 107)',
+      flex: 3,
+      fontWeight: '500'
+    },
+    ChatPanelHeaderDown: {
+      fontSize: '20px',
+      color: 'rgb(250, 250, 250)',
+      flex: 3,
+      fontWeight: '500'
+    },
+    ChatPanelHeaderTextContainer: {
+      flex: 2,
+      margin: '10px'
+    },
     title: {
       fontSize: 24
     },
+    chatHeader: {
+      position: 'relative',
+      height: '10vw',
+      width: '100%',
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'flex-end',
+      justifyContent: 'space-between',
+      padding: 8,
+      backgroundColor: 'rgb(61, 207, 252)',
+      borderBottomStartRadius: 14,
+      borderBottomEndRadius: 14
+    },
+    ChatPanelContainer: {
+      height: 'auto'
+    }
 
   });
 

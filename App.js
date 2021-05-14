@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 //import * as React from 'react';
 import RoomList from './Components/RoomList';
 import ChatPanel from './Components/ChatPanel';
-import { Rooms } from './Components/queries';
+import { getRooms } from './Components/queries';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -13,9 +13,11 @@ const Stack = createStackNavigator();
 
 const [fetchedRooms, setFetchedRooms] = useState([])
 const [roomID, setroomID] = useState('')
+const [roomName, setRoomName] = useState('')
+
 
 const getData = async () => {
-  let data = await Rooms()
+  let data = await getRooms()
   setFetchedRooms(data.response)
   }
 
@@ -25,7 +27,7 @@ getData()
 
 
 
-console.log(fetchedRooms)
+console.log(roomName)
 
 return (
   <NavigationContainer>
@@ -33,10 +35,10 @@ return (
         headerShown: false}}
         initialRouteName="RoomList">
       <Stack.Screen name="RoomList">
-       {props => <RoomList {...props} data={fetchedRooms} roomID={roomID} setID={setroomID} />}
+       {props => <RoomList {...props} data={fetchedRooms} roomID={roomID} setID={setroomID} setRoomName={setRoomName} />}
       </Stack.Screen>
       <Stack.Screen name="ChatPanel">
-       {props => <ChatPanel {...props} roomID={roomID} />}
+       {props => <ChatPanel {...props} roomID={roomID} roomName={roomName}/>}
       </Stack.Screen>
     </Stack.Navigator>
   </NavigationContainer>
