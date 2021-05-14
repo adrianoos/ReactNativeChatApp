@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
       margin: 6,
       borderRadius: 4,
       backgroundColor: 'rgb(255, 255, 255)',
+      cursor: 'pointer'
     },
     header: {
       position: 'relative',
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
       borderBottomStartRadius: 14,
       borderBottomEndRadius: 14
     },
-    headetText: {
+    headerText: {
       fontSize: '80px',
       color: 'rgb(0, 82, 107)',
       flex: 3,
