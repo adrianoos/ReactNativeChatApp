@@ -21,11 +21,14 @@ getData()
 }, [])
 
 const Stack = createStackNavigator();
-//<RoomList data={fetchedRooms} />
+
+console.log(fetchedRooms)
 
 return (
   <NavigationContainer>
-    <Stack.Navigator initialRouteName="RoomList">
+    <Stack.Navigator screenOptions={{
+        headerShown: false}}
+        initialRouteName="RoomList">
       <Stack.Screen name="RoomList">
        {props => <RoomList {...props} data={fetchedRooms} />}
       </Stack.Screen>
