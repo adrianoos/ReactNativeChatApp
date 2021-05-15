@@ -12,7 +12,7 @@ const App = () => {
 const Stack = createStackNavigator();
 
 const [fetchedRooms, setFetchedRooms] = useState([])
-const [roomID, setroomID] = useState('')
+const [roomID, setRoomID] = useState('')
 const [roomName, setRoomName] = useState('')
 
 
@@ -31,7 +31,7 @@ return (
         headerShown: false}}
         initialRouteName="RoomList">
       <Stack.Screen name="RoomList">
-       {props => <RoomList {...props} data={fetchedRooms} roomID={roomID} setID={setroomID} setRoomName={setRoomName} />}
+       {props => <RoomList {...props} data={fetchedRooms} roomID={roomID} setID={setRoomID} setRoomName={setRoomName} />}
       </Stack.Screen>
       <Stack.Screen name="ChatPanel">
        {props => <ChatPanel {...props} roomID={roomID} roomName={roomName}/>}

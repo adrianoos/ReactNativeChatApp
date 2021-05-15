@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     chatHeader: {
       position: 'relative',
       top: '-30px',
-      height: '10vw',
+      height: '150px',
       width: '100%',
       display: 'flex',
       flexDirection: 'row',

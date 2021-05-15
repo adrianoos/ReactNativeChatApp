@@ -52,7 +52,7 @@ export const getRooms = async () => {
 return modifiedResponse
 };
 
-export const getRoom = async ( roomID ) => {
+export const getMessages = async ( roomID ) => {
 
     const httpLink = createHttpLink({
       uri: 'https://chat.thewidlarzgroup.com/api/graphiql',
@@ -85,13 +85,7 @@ export const getRoom = async ( roomID ) => {
        }
       `
     })
-   const modifiedResponse = {
-     response: response.data.room.messages,
-   }
-  return modifiedResponse
 
-
+  return response;
 };
 
-
-//1d824729-5c45-437f-8ca6-6e0595eea315
