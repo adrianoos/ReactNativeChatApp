@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     },
     chatHeader: {
       position: 'relative',
+      top: '-30px',
       height: '10vw',
       width: '100%',
       display: 'flex',
@@ -70,7 +71,6 @@ const styles = StyleSheet.create({
     ChatPanelContainer: {
       height: 'auto'
     }
-
   });
 
   export default styles;

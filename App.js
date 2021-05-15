@@ -25,10 +25,6 @@ useEffect(()=> {
 getData()
 }, [])
 
-
-
-console.log(roomName)
-
 return (
   <NavigationContainer>
     <Stack.Navigator screenOptions={{

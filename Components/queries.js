@@ -54,39 +54,44 @@ return modifiedResponse
 
 export const getRoom = async ( roomID ) => {
 
-  const httpLink = createHttpLink({
-    uri: 'https://chat.thewidlarzgroup.com/api/graphiql',
-  });
+    const httpLink = createHttpLink({
+      uri: 'https://chat.thewidlarzgroup.com/api/graphiql',
+    });
 
-  const authLink = setContext((_, { headers }) => {
-    const token = AuthToken
-    return {
-      headers: {
-        ...headers,
-        authorization: token ? `Bearer ${AuthToken}` : "",
+    const authLink = setContext((_, { headers }) => {
+      const token = AuthToken
+      return {
+        headers: {
+          ...headers,
+          authorization: token ? `Bearer ${AuthToken}` : "",
+        }
       }
-    }
-  });
+    });
 
-  const client = new ApolloClient({
-    link: authLink.concat(httpLink),
-    cache: new InMemoryCache()
-  })
+    const client = new ApolloClient({
+      link: authLink.concat(httpLink),
+      cache: new InMemoryCache()
+    })
 
- const response =  await client.query({
-    query: gql`
-    {
-      room (id: "${roomID}"){
-       messages {
-         id
-         body
+    const response =  await client.query({
+      query: gql`
+      {
+        room (id: "${roomID}"){
+         messages {
+           id
+           body
+         }
        }
-     }
-     }
-    `
-  })
- const modifiedResponse = {
-   response: response.data.room.messages,
- }
-return modifiedResponse
+       }
+      `
+    })
+   const modifiedResponse = {
+     response: response.data.room.messages,
+   }
+  return modifiedResponse
+
+
 };
+
+
+//1d824729-5c45-437f-8ca6-6e0595eea315
