@@ -6,6 +6,7 @@ import PhoneIcon from './PhoneIcon';
 import VideoIcon from './VideoIcon';
 import ProfileIcon from './ProfileIcon';
 import { getMessages } from '../Components/queries';
+import { set } from 'react-native-reanimated';
 
 
 const ChatPanel = ({ navigation, roomID, roomName }) => {
@@ -25,7 +26,6 @@ const ChatPanel = ({ navigation, roomID, roomName }) => {
         name: 'React Native',
         avatar: 'https://placeimg.com/140/140/any',
       }
-
       let newItem = { _id, text, createdAt, user }
       messagesArray.push(newItem)
     }
@@ -37,9 +37,10 @@ const ChatPanel = ({ navigation, roomID, roomName }) => {
     }, [roomID])
 
     const onSend = useCallback((messages = []) => {
-      setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
+      setRoomMessages(previousMessages => GiftedChat.append(previousMessages, messages))
     }, [])
 
+console.log(roomMessages)
 
 return (
 

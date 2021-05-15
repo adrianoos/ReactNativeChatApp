@@ -89,3 +89,40 @@ export const getMessages = async ( roomID ) => {
   return response;
 };
 
+export const sendMessage = async ( roomID, message ) => {
+
+  const httpLink = createHttpLink({
+    uri: 'https://chat.thewidlarzgroup.com/api/graphiql',
+  });
+
+  const authLink = setContext((_, { headers }) => {
+    const token = AuthToken
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${AuthToken}` : "",
+      }
+    }
+  });
+
+  const client = new ApolloClient({
+    link: authLink.concat(httpLink),
+    cache: new InMemoryCache()
+  })
+
+  const response =  await client.query({
+    query: gql`
+    mutation {
+      loginUser(email: "ron@mail.com", password:"RonIsCool!123") {
+        token
+      }
+      sendMessage(body:"${message}", roomId:"${roomID}") {
+        id
+      }
+    }
+    `
+  })
+
+return response;
+};
+
