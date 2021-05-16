@@ -5,13 +5,13 @@ import styles from '../styles/styles';
 import PhoneIcon from './PhoneIcon';
 import VideoIcon from './VideoIcon';
 import ProfileIcon from './ProfileIcon';
-import { getMessages } from '../Components/queries';
-import { set } from 'react-native-reanimated';
+import { getMessages, sendMessage } from '../Components/queries';
 
 
 const ChatPanel = ({ navigation, roomID, roomName }) => {
 
   const [roomMessages, setRoomMessages] = useState([])
+  const [newMessage, setNewMessage] = useState(false)
 
   const getMsg = async () => {
     let data = await getMessages(roomID)
@@ -32,15 +32,22 @@ const ChatPanel = ({ navigation, roomID, roomName }) => {
     setRoomMessages(messagesArray)
     };
 
-  useEffect(()=> {
-    getMsg()
-    }, [roomID])
+useEffect(()=> {
+  getMsg()
+}, [roomID])
 
-    const onSend = useCallback((messages = []) => {
-      setRoomMessages(previousMessages => GiftedChat.append(previousMessages, messages))
-    }, [])
 
-console.log(roomMessages)
+useEffect(()=> {
+if (roomMessages.length) {
+ sendMessage(roomID, roomMessages[0].text)
+}
+}, [newMessage])
+
+const onSend = useCallback((messages = []) => {
+  setRoomMessages(previousMessages => GiftedChat.append(previousMessages, messages))
+  setNewMessage(!newMessage)
+}, [])
+
 
 return (
 
