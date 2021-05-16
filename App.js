@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler';
 import React, { useState, useEffect } from 'react';
-//import * as React from 'react';
 import RoomList from './Components/RoomList';
 import ChatPanel from './Components/ChatPanel';
 import { getRooms } from './Components/queries';

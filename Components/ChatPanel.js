@@ -22,13 +22,13 @@ const ChatPanel = ({ navigation, roomID, roomName }) => {
       const text = dataMessage[item].body
       const createdAt =  new Date()
       const user = {
-        _id: 2,
-        name: 'React Native',
-        avatar: 'https://placeimg.com/140/140/any',
+        _id: dataMessage[item].user.id,
+
       }
       let newItem = { _id, text, createdAt, user }
       messagesArray.push(newItem)
     }
+    messagesArray.reverse()
     setRoomMessages(messagesArray)
     };
 
@@ -36,6 +36,7 @@ useEffect(()=> {
   getMsg()
 }, [roomID])
 
+console.log(roomMessages)
 
 useEffect(()=> {
 if (roomMessages.length) {

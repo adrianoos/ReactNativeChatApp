@@ -9,7 +9,7 @@ import { split } from "apollo-link";
 
 
 let AuthToken = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjaGF0bHkiLCJleHAiOjE2MjMxOTM4OTQsImlhdCI6MTYyMDc3NDY5NCwiaXNzIjoiY2hhdGx5IiwianRpIjoiNTQ1Yjg5YzYtMTE0Ni00NmNmLTg3OTctMTY5ODBhNzJjMjUxIiwibmJmIjoxNjIwNzc0NjkzLCJzdWIiOiIxNjE5M2I3ZS03NmQ5LTRiYzQtYWRlNy01YWI4ODIzODAzMDgiLCJ0eXAiOiJhY2Nlc3MifQ.YqR45pVy6NRIW94EC68P8bDZBOMfItFh5lc3gIOVDcnQQSLE-C88I_ZFibSUtcevWcQ0nNcOEO7BIQVy4TLV1g'
-//const AuthToken = process.env.REACT_APP_AUTHTOKEN
+
 
 export const getRooms = async () => {
 
@@ -85,6 +85,9 @@ export const getMessages = async ( roomID ) => {
          messages {
            id
            body
+           user {
+             id
+           }
          }
        }
        }
@@ -109,25 +112,6 @@ export const sendMessage = async ( roomID, message ) => {
       }
     }
   });
-
-  const phoenixSocket = new PhoenixSocket("wss://chat.thewidlarzgroup.com/socket", {
-  params: () => {
-    if (Cookies.get("token")) {
-      return { token: Cookies.get("token") };
-    } else {
-      return {};
-    }
-  }
-});
-
-const absintheSocket = AbsintheSocket.create(phoenixSocket);
-const websocketLink = createAbsintheSocketLink(absintheSocket);
-
-const link = split(
-  operation => hasSubscription(operation.query),
-  websocketLink,
-  authLink
-);
 
   const client = new ApolloClient({
     link: authLink.concat(httpLink),
