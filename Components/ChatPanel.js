@@ -32,15 +32,13 @@ const ChatPanel = ({ navigation, roomID, roomName }) => {
     };
 
 useEffect(()=> {
-  getMsg()
+ if (roomID) {getMsg()}
 }, [roomID])
 
-console.log(roomID)
 
 useEffect(()=> {
 if (roomMessages.length) {
  sendMessage(roomID, roomMessages[0].text)
- console.log(roomMessages)
 }
 }, [newMessage])
 

@@ -24,6 +24,7 @@ useEffect(()=> {
 getData()
 }, [])
 
+
 return (
   <NavigationContainer>
     <Stack.Navigator screenOptions={{
