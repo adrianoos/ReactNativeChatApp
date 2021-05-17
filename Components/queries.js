@@ -85,6 +85,7 @@ export const getMessages = async ( roomID ) => {
          messages {
            id
            body
+           insertedAt
            user {
              id
            }

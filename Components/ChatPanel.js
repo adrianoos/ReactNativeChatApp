@@ -20,7 +20,7 @@ const ChatPanel = ({ navigation, roomID, roomName }) => {
     for (let item in dataMessage) {
       const _id = dataMessage[item].id
       const text = dataMessage[item].body
-      const createdAt =  new Date()
+      const createdAt =  dataMessage[item].insertedAt
       const user = {
         _id: dataMessage[item].user.id,
 
@@ -28,7 +28,7 @@ const ChatPanel = ({ navigation, roomID, roomName }) => {
       let newItem = { _id, text, createdAt, user }
       messagesArray.push(newItem)
     }
-    messagesArray.reverse()
+    messagesArray
     setRoomMessages(messagesArray)
     };
 
