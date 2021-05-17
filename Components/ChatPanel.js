@@ -8,7 +8,7 @@ import ProfileIcon from './ProfileIcon';
 import { getMessages, sendMessage } from '../Components/queries';
 
 
-const ChatPanel = ({ navigation, roomID, roomName }) => {
+const ChatPanel = ({ navigation, roomID, setRoomID, roomName }) => {
 
   const [roomMessages, setRoomMessages] = useState([])
   const [newMessage, setNewMessage] = useState(false)
@@ -28,7 +28,7 @@ const ChatPanel = ({ navigation, roomID, roomName }) => {
       let newItem = { _id, text, createdAt, user }
       messagesArray.push(newItem)
     }
-    messagesArray
+    messagesArray.reverse()
     setRoomMessages(messagesArray)
     };
 

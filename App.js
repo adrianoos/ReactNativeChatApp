@@ -33,7 +33,7 @@ return (
        {props => <RoomList {...props} data={fetchedRooms} roomID={roomID} setID={setRoomID} setRoomName={setRoomName} />}
       </Stack.Screen>
       <Stack.Screen name="ChatPanel">
-       {props => <ChatPanel {...props} roomID={roomID} roomName={roomName}/>}
+       {props => <ChatPanel {...props} roomID={roomID} roomName={roomName} />}
       </Stack.Screen>
     </Stack.Navigator>
   </NavigationContainer>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, SafeAreaView, FlatList, View, Button, Touchable, TouchableWithoutFeedback } from 'react-native';
 import styles from '../styles/styles';
 import SearchIcon from './SearchIcon';
@@ -15,6 +15,8 @@ const switchView = (id, name) =>{
   setID(id)
   setRoomName(name)
 };
+
+useEffect(() => setID('')) // temp function for cleaning RoomId after switch from ChatPanel
 
   const renderItem = ({ item }) => (
     <Item title={item.name} id={item.id} name={item.name}/>);
