@@ -16,8 +16,6 @@ const switchView = (id, name) =>{
   setRoomName(name)
 };
 
-useEffect(() => setID('')) // temp function for cleaning RoomId after switch from ChatPanel
-
   const renderItem = ({ item }) => (
     <Item title={item.name} id={item.id} name={item.name}/>);
 

@@ -8,7 +8,7 @@ import ProfileIcon from './ProfileIcon';
 import { getMessages, sendMessage } from '../Components/queries';
 
 
-const ChatPanel = ({ navigation, roomID, setRoomID, roomName }) => {
+const ChatPanel = ({ navigation, roomID, roomName }) => {
 
   const [roomMessages, setRoomMessages] = useState([])
   const [newMessage, setNewMessage] = useState(false)
@@ -23,7 +23,6 @@ const ChatPanel = ({ navigation, roomID, setRoomID, roomName }) => {
       const createdAt =  dataMessage[item].insertedAt
       const user = {
         _id: dataMessage[item].user.id,
-
       }
       let newItem = { _id, text, createdAt, user }
       messagesArray.push(newItem)
@@ -36,13 +35,16 @@ useEffect(()=> {
   getMsg()
 }, [roomID])
 
-console.log(roomMessages)
+console.log(roomID)
 
 useEffect(()=> {
 if (roomMessages.length) {
  sendMessage(roomID, roomMessages[0].text)
+ console.log(roomMessages)
 }
 }, [newMessage])
+
+
 
 const onSend = useCallback((messages = []) => {
   setRoomMessages(previousMessages => GiftedChat.append(previousMessages, messages))

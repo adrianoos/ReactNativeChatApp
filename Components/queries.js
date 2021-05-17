@@ -114,6 +114,7 @@ export const sendMessage = async ( roomID, message ) => {
     }
   });
 
+
   const client = new ApolloClient({
     link: authLink.concat(httpLink),
     cache: new InMemoryCache()
@@ -134,4 +135,3 @@ export const sendMessage = async ( roomID, message ) => {
 
 return response;
 };
-
