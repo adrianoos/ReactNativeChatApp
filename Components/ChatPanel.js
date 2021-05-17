@@ -66,7 +66,7 @@ return (
       messages={roomMessages}
       onSend={messages => onSend(messages)}
       user={{
-        _id: 1,
+        _id: '16193b7e-76d9-4bc4-ade7-5ab882380308', // temp hardcoded
       }}
      />
      <Button // temp button to navigate
