@@ -1,18 +1,12 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { gql } from '@apollo/client';
-//import ApolloClient from 'apollo-client';
-//import * as AbsintheSocket from "@absinthe/socket";
-//import { createAbsintheSocketLink } from "@absinthe/socket-apollo-link";
-//import { Socket as PhoenixSocket } from "phoenix";
-//import { hasSubscription } from "@jumpn/utils-graphql";
-//import { split } from "apollo-link";
-//import { InMemoryCache } from "apollo-cache-inmemory";
-//import Cookies from "js-cookie";
-//import { WebSocketLink } from '@apollo/client/link/ws';
+import * as AbsintheSocket from "@absinthe/socket";
+import { createAbsintheSocketLink } from "@absinthe/socket-apollo-link";
+import { Socket as PhoenixSocket } from "phoenix";
+
 
 let AuthToken = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjaGF0bHkiLCJleHAiOjE2MjMxOTM4OTQsImlhdCI6MTYyMDc3NDY5NCwiaXNzIjoiY2hhdGx5IiwianRpIjoiNTQ1Yjg5YzYtMTE0Ni00NmNmLTg3OTctMTY5ODBhNzJjMjUxIiwibmJmIjoxNjIwNzc0NjkzLCJzdWIiOiIxNjE5M2I3ZS03NmQ5LTRiYzQtYWRlNy01YWI4ODIzODAzMDgiLCJ0eXAiOiJhY2Nlc3MifQ.YqR45pVy6NRIW94EC68P8bDZBOMfItFh5lc3gIOVDcnQQSLE-C88I_ZFibSUtcevWcQ0nNcOEO7BIQVy4TLV1g'
-
 
 export const getRooms = async () => {
 
@@ -138,3 +132,39 @@ export const sendMessage = async ( roomID, message ) => {
 
 return response;
 };
+
+export const receiveMessages = async () => {
+
+  const phoenixSocket = new PhoenixSocket("wss://chat.thewidlarzgroup.com/socket", {
+    params: {token: AuthToken}
+  });
+
+const absintheSocket = AbsintheSocket.create(phoenixSocket);
+
+const link = createAbsintheSocketLink(absintheSocket);
+
+const cache = new InMemoryCache();
+
+const client = new ApolloClient({
+  link,
+  cache
+});
+
+  const response =  await client.subscribe({
+    query: gql`
+    subscription{
+      messageAdded (roomId:"1d824729-5c45-437f-8ca6-6e0595eea315") {
+        id
+        insertedAt
+        user {
+          id
+        }
+        body
+      }
+    }
+    `
+  })
+
+return response;
+};
+

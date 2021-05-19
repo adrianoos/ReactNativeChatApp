@@ -5,13 +5,14 @@ import styles from '../styles/styles';
 import PhoneIcon from './PhoneIcon';
 import VideoIcon from './VideoIcon';
 import ProfileIcon from './ProfileIcon';
-import { getMessages, sendMessage } from '../Components/queries';
+import { getMessages, sendMessage, receiveMessages } from '../Components/queries';
 
 
 const ChatPanel = ({ navigation, roomID, roomName }) => {
 
   const [roomMessages, setRoomMessages] = useState([])
   const [newMessage, setNewMessage] = useState(false)
+  const [receivedMessage, setReceivedMessage ] = useState([])
 
   const getMsg = async () => {
     let data = await getMessages(roomID)
@@ -31,8 +32,21 @@ const ChatPanel = ({ navigation, roomID, roomName }) => {
     setRoomMessages(messagesArray)
     };
 
+    const listenerOn = async () => {
+      let data = await receiveMessages()
+      const observer = {
+        next: x => setReceivedMessage(x),
+        error: err => console.error('Observer got an error: ' + err),
+        complete: () => console.log('Observer got a complete notification'),
+      };
+      data.subscribe(observer)
+    };
+
 useEffect(()=> {
- if (roomID) {getMsg()}
+ if (roomID) {
+   getMsg()
+   listenerOn()
+  }
 }, [roomID])
 
 
@@ -42,6 +56,9 @@ if (roomMessages.length) {
 }
 }, [newMessage])
 
+useEffect(()=> {
+  console.log(receivedMessage)
+  }, [receivedMessage])
 
 
 const onSend = useCallback((messages = []) => {

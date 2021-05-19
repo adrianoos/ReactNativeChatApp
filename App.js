@@ -40,6 +40,7 @@ return (
   </NavigationContainer>
 
 
-)};
+)
+};
 
 export default App;
