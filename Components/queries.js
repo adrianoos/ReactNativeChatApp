@@ -133,7 +133,7 @@ export const sendMessage = async ( roomID, message ) => {
 return response;
 };
 
-export const receiveMessages = async () => {
+export const receiveMessages = async (roomID) => {
 
   const phoenixSocket = new PhoenixSocket("wss://chat.thewidlarzgroup.com/socket", {
     params: {token: AuthToken}
@@ -153,7 +153,7 @@ const client = new ApolloClient({
   const response =  await client.subscribe({
     query: gql`
     subscription{
-      messageAdded (roomId:"1d824729-5c45-437f-8ca6-6e0595eea315") {
+      messageAdded (roomId:"${roomID}") {
         id
         insertedAt
         user {
