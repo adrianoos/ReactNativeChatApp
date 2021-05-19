@@ -25,6 +25,7 @@ getData()
 }, [])
 
 
+
 return (
   <NavigationContainer>
     <Stack.Navigator screenOptions={{
@@ -38,8 +39,6 @@ return (
       </Stack.Screen>
     </Stack.Navigator>
   </NavigationContainer>
-
-
 )
 };
 

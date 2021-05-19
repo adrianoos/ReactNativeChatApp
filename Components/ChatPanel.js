@@ -2,9 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { GiftedChat } from 'react-native-gifted-chat';
 import { Text, View, Button } from 'react-native';
 import styles from '../styles/styles';
-import PhoneIcon from './PhoneIcon';
-import VideoIcon from './VideoIcon';
-import ProfileIcon from './ProfileIcon';
+import { PhoneIcon, VideoIcon, ProfileIcon } from '../assets/Icons'
 import { getMessages, sendMessage, receiveMessages } from '../Components/queries';
 
 
@@ -60,9 +58,9 @@ const mergeMessages = () => {
     }
     let newItem = { _id, text, createdAt, user }
     const updated = insertMessage(roomMessages, 0, newItem)
-    if (!receivedMessage.user.id == loggedUserID) {
-      setRoomMessages(updated)
-    }
+   // if (!receivedMessage.user.id == loggedUserID) { // not multiply condition
+     setRoomMessages(updated)
+   // }
 
   }
 };

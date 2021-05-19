@@ -1,12 +1,7 @@
 import React, { useEffect } from 'react';
-import { Text, SafeAreaView, FlatList, View, Button, Touchable, TouchableWithoutFeedback } from 'react-native';
+import { Text, SafeAreaView, FlatList, View, TouchableWithoutFeedback } from 'react-native';
 import styles from '../styles/styles';
-import SearchIcon from './SearchIcon';
-import RoomsIcon from './RoomsIcon';
-import { createStackNavigator } from '@react-navigation/stack';
-
-
-const Stack = createStackNavigator();
+import { SearchIcon, RoomsIcon } from '../assets/Icons'
 
 const RoomList = ({ navigation, data, setID, setRoomName }) => {
 
@@ -28,7 +23,6 @@ const switchView = (id, name) =>{
     );
 
   return (
-
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>ROOMS</Text>
