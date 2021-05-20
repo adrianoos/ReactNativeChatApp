@@ -15,19 +15,13 @@ const ChatPanel = ({ navigation, roomID, roomName }) => {
   const [receivedMessage, setReceivedMessage ] = useState([])
 
   const getMsg = async () => {
-    let data = await getMessages(roomID)
-    let dataMessage = data.data.room.messages
-    let messagesArray = []
-    for (let item in dataMessage) {
-      const _id = dataMessage[item].id
-      const text = dataMessage[item].body
-      const createdAt =  dataMessage[item].insertedAt
-      const user = {
-        _id: dataMessage[item].user.id,
-      }
-      let newItem = { _id, text, createdAt, user }
-      messagesArray.push(newItem)
-    }
+  let data = await getMessages(roomID)
+  let messagesArray = data.data.room.messages.map((message) => ({
+      _id: message.id,
+      text: message.body,
+      createdAt: message.insertedAt,
+      user: { _id: message.user.id }
+  }))
     messagesArray.reverse()
     setRoomMessages(messagesArray)
     };

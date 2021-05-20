@@ -14,7 +14,6 @@ const [fetchedRooms, setFetchedRooms] = useState([])
 const [roomID, setRoomID] = useState('')
 const [roomName, setRoomName] = useState('')
 
-
 const getData = async () => {
   let data = await getRooms()
   setFetchedRooms(data.response)
